@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid')
   const doodler = document.createElement('div')
+  const button = document.querySelector('.button')
   let doodlerLeftSpace = 50
   let startPoint = 150
-  let doodlerBottomSpace = startPoint;
+  let doodlerBottomSpace = startPoint
   let isGameOver = false
   let platformCount = 5
   let platforms = []
@@ -18,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
   function createDoodle() {
-    grid.appendChild(doodler);
-    doodler.classList.add("doodler");
+    grid.appendChild(doodler)
+    doodler.classList.add("doodler")
     //set the doodle on first plattform start
-    doodlerLeftSpace = platforms[0].left + 12.5; //zentriere doodler (85-60)/2
-    doodlerBottomSpace = platforms[0].bottom;
+    doodlerLeftSpace = platforms[0].left + 12.5 //zentriere doodler (85-60)/2
+    doodlerBottomSpace = platforms[0].bottom
     //set the doodle on first plattform end
-    doodler.style.left = doodlerLeftSpace + "px";
-    doodler.style.bottom = doodlerBottomSpace + "px";
+    doodler.style.left = doodlerLeftSpace + "px"
+    doodler.style.bottom = doodlerBottomSpace + "px"
   }
 
   class Platform {
@@ -123,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.innerHTML = score
     clearInterval(upTimerId)
     clearInterval(downTimerId)
-    clearInterval(rightTimerId);
-    clearInterval(leftTimerId);
+    clearInterval(rightTimerId)
+    clearInterval(leftTimerId)
   }
 
   function control(e) {
@@ -147,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     leftTimerId = setInterval(function () {
       if (doodlerLeftSpace >= 0) {
         doodlerLeftSpace -= 5
-        doodler.style.left = doodlerLeftSpace + "px";
+        doodler.style.left = doodlerLeftSpace + "px"
       } else moveRight()
 
     }, 30);
@@ -155,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function moveRight() {
     if (isGoingLeft) {
-      clearInterval(leftTimerId);
+      clearInterval(leftTimerId)
       isGoingLeft = false;
     }
     isGoingRight = true;
@@ -163,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (doodlerLeftSpace <= 340) {
         //400-60
         doodlerLeftSpace += 5
-        doodler.style.left = doodlerLeftSpace + "px";
+        doodler.style.left = doodlerLeftSpace + "px"
       } else moveLeft()
     }, 30);
   }
@@ -178,16 +179,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function start() {
     if (!isGameOver) {
-      createPlatforms(); //first create platform then doodler
-      createDoodle();
+      createPlatforms() //first create platform then doodler
+      createDoodle()
       //movePlatforms()  //single move 4px down
-      setInterval(movePlatforms, 30);
-      jump();
+      setInterval(movePlatforms, 30)
+      jump()
       document.addEventListener('keyup',control)
     }
   }
 
   // TODO: attach button to start the game
-  start()
+  start();
+  button.addEventListener('click', function() {
+      location.reload();
+  })
+  
 
 })
