@@ -8,7 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let platforms = []
   let upTimerId
   let downTimerId
+  let isJumping = true
   
+
+  function createDoodle() {
+    grid.appendChild(doodler);
+    doodler.classList.add("doodler");
+    //set the doodle on first plattform start
+    doodlerLeftSpace = platforms[0].left + 12.5; //zentriere doodler (85-60)/2
+    doodlerBottomSpace = platforms[0].bottom;
+    //set the doodle on first plattform end
+    doodler.style.left = doodlerLeftSpace + "px";
+    doodler.style.bottom = doodlerBottomSpace + "px";
+  }
 
   class Platform {
     constructor(newPlatBottom) {
@@ -46,19 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function createDoodle() {
-    grid.appendChild(doodler);
-    doodler.classList.add("doodler");
-    //set the doodle on first plattform start
-    doodlerLeftSpace = platforms[0].left + 12.5; //zentriere doodler (85-60)/2
-    doodlerBottomSpace = platforms[0].bottom;
-    //set the doodle on first plattform end
-    doodler.style.left = doodlerLeftSpace + "px";
-    doodler.style.bottom = doodlerBottomSpace + "px";
-  }
-
   function jump() {
     clearInterval(downTimerId)  //each time we jump we clear first the downTimerId
+    isJumping = true
     upTimerId = setInterval(function() {
       doodlerBottomSpace += 7
       doodler.style.bottom = doodlerBottomSpace + 'px'
@@ -70,23 +72,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function fall() {
     clearInterval(upTimerId)
+    isJumping = false
     downTimerId = setInterval(function() {
       doodlerBottomSpace -= 5
       doodler.style.bottom = doodlerBottomSpace + 'px'
       if (doodlerBottomSpace <= 0) {
         gameOver()
       }
+      platforms.forEach(flatform => {
+        if ( //collision check
+          doodlerBottomSpace >= flatform.bottom &&
+          doodlerBottomSpace <= flatform.bottom + 15 &&
+          doodlerLeftSpace + 60 >= flatform.left &&
+          doodlerLeftSpace <= flatform.left + 85 &&
+          !isJumping
+        ) {
+          console.log("landed");
+          jump();
+        }
+      })
+
     },30)
-  }
-  
-  function start() {
-    if (!isGameOver) {
-      createPlatforms()  //first create platform then doodler
-      createDoodle()
-      //movePlatforms()  //single move 4px down
-      setInterval(movePlatforms, 30)
-      jump()
-    }
   }
 
   function gameOver() {
@@ -94,6 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
     isGameOver = true
     clearInterval(upTimerId)
     clearInterval(downTimerId)
+  }
+
+  function control(e) {
+    if (e.key === "ArrowLeft") {
+      //move left
+
+    } else if (e.key === "ArrowRight") {
+      //move right
+    } else if (e.key === "ArrowUp") {
+      //move up
+    }
+  }
+
+
+  function start() {
+    if (!isGameOver) {
+      createPlatforms(); //first create platform then doodler
+      createDoodle();
+      //movePlatforms()  //single move 4px down
+      setInterval(movePlatforms, 30);
+      jump();
+    }
   }
 
   // TODO: attach button to start the game
