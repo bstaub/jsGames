@@ -8,3 +8,12 @@ Code with Ania Kubów #JavaScriptGames
 - code quality with https://bstaub.os.embold.io/
 
 
+## Pull requests
+
+- git checkout -b 'add-doodlejump-initial'
+- git add .
+- git commit -m'blueprint added'
+- git add .
+- git commit -m'blueprint added' --amend
+- git push origin HEAD
+
