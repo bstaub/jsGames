@@ -1,20 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const eyes = document.querySelectorAll('.eye')
-    const mask = document.querySelector('.mask')
-    const torso = document.querySelector('.torso')
-    const robot = document.querySelector('.robot')
-    let position = 0
+  const grid = document.querySelector('.grid')
+  const doodler = document.createElement('div')
+  let doodlerLeftSpace = 50
 
 
-    function changeEyes() {
-      eyes.forEach(eye => eye.classList.toggle('blue-eye'))
-    }
+  function createDoodle() {
+    grid.appendChild(doodler)
+    doodler.classList.add('doodler')
+    doodler.style.left = doodlerLeftSpace + 'px'
 
-    mask.addEventListener('click', changeEyes)
+  }
 
-    function moveRobot() {
-      position += 50
-      robot.style.left = position + 'px';
-    }
-    torso.addEventListener('click', moveRobot)
+  createDoodle()
+
 })

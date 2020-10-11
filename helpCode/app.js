@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mask = document.querySelector('.mask')
     const torso = document.querySelector('.torso')
     const robot = document.querySelector('.robot')
-    let position = 20
+    let position = 0
 
 
     function changeEyes() {
