@@ -1,5 +1,7 @@
 # JavaScript Games
 Code with Ania Kubów #JavaScriptGames
+- helpCode (Robot Move and Eye Red Blue)
+- Doodle Jump: https://www.youtube.com/watch?v=YSEsSs3hB6A
 
 ## Code Completion  (AI artificial intelligence)
 
