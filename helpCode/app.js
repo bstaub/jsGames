@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mask = document.querySelector('.mask')
     const torso = document.querySelector('.torso')
     const robot = document.querySelector('.robot')
+    // FIXME: the position should be diffrent
     let position = 0
 
 
