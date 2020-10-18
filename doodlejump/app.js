@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < platformCount; i++) {
       let platformGap = 600 / platformCount
       let newPlatBottom = 100 + i * platformGap
-      console.log(newPlatBottom)
+      //console.log(newPlatBottom)
       let newPlatfom = new Platform(newPlatBottom)
       platforms.push(newPlatfom)
-      console.log(platforms)
+      //console.log(platforms)
     }
   }
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let firstPlatform = platforms[0].visual
           firstPlatform.remove('platform')
           platforms.shift()
-          console.log(platforms)
+          //console.log(platforms)
           score++
           //add new platform at top (600)
           let newPlatform = new Platform(600)
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
           doodlerLeftSpace <= flatform.left + 85 &&
           !isJumping
         ) {
-          console.log("landed");
+          //console.log("landed");
           startPoint = doodlerBottomSpace
           jump();
         }
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function gameOver() {
-    console.log('game over')
+    //console.log('game over')
     isGameOver = true
     while (grid.firstChild) {
       grid.removeChild(grid.firstChild)
@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function control(e) {
-    //console.log(e)
     if (e.key === "ArrowLeft") {
       moveLeft()
     } else if (e.key === "ArrowRight") {
